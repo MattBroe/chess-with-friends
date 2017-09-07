@@ -1,0 +1,50 @@
+
+
+{% extends 'game/base.html' %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static 'css/chessboard-0.3.0.css' %}">
+<script src="{% static 'js/chessboard-0.3.0.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+
+
+
+<div class="game-box">
+
+
+  <div class="board-box">
+    <div id="board"></div>
+  </div>
+
+  <div class="game-actions">
+    <p class="btn btn-default" class="info" id="draw-btn">Draw</p>
+    <p class="btn btn-default" class="info" id="decline-draw-btn" style="display: none">Decline draw</p>
+    <p class="btn btn-default" class="info" id="resign-btn">Resign</p>
+  </div>
+
+
+  <div class="game-stats">
+    <p>Status: <span id="status"></span></p>
+    <p>FEN: <span id="fen"></span></p>
+    <p>PGN: <span id="pgn"></span></p>
+  </div>
+
+</div>
+
+<!-- The following lines are used to pass Django template variables into the linked javascript file -->
+<input type="hidden" id="current_game_long_fen" value="{{ current_game.long_fen }}" />
+<input type="hidden" id="current_game_short_fen" value="{{ current_game.short_fen }}" />
+<input type="hidden" id="current_game_pgn" value="{{ current_game.pgn }}" />
+<input type="hidden" id="current_game_game_over" value="{{ current_game.game_over }}" />
+<input type="hidden" id="current_game_draw_offered" value="{{ current_game.draw_offered }}" />
+<input type="hidden" id="current_game_status" value="{{ current_game.status }}" />
+<input type="hidden" id="color" value="{{ color }}" />
+<input type="hidden" id="csrf_token" value="{{ csrf_token }}" />
+
+<script type="text/javascript" src="{% static 'js/game_page.js' %}"></script>
+
+
+{% endblock %}

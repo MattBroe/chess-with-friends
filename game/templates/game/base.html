@@ -1,0 +1,56 @@
+
+{% load staticfiles %}
+<html>
+
+    <head>
+        <title>Chess With Friends</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/game.css' %}">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrapper">
+
+            <div class="page-header"> 
+                <div class="site-title">
+                    <h1><a href="/">Chess With Friends</a></h1>
+                </div>
+                
+                <div class="info-box">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout_user' %}" class="btn btn-default" class="info">Log out</a>
+                    
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-default" class="info">Log in</a>
+                    <a href="{% url 'signup' %}" class="btn btn-default" class="info">Create account</a>
+                {% endif %}
+                </div>
+            </div>
+             
+            <div class="body-frame"> 
+                <div class="content-container">
+                    <!-- <div class="row"> -->
+                        <!-- <div class="col-md-8"> -->
+                        {% block content %}
+                        {% endblock %}
+                    <!--     </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+       <!-- The following lines are necessary to pass Django named urls into javascript files-->
+        <input type="hidden" id="check_if_matched_url" value="{% url 'check_if_matched' %}" />
+        <input type="hidden" id="redirect_current_game_url" value="{% url 'current_game_page' %}" />
+        <input type="hidden" id="start_game_url" value="{% url 'start_game' %}" />
+        <input type="hidden" id="get_current_game_info_url" value="{% url 'get_current_game_info' %}" />
+        <input type="hidden" id="post_move_url" value="{% url 'post_move' %}" />
+        <input type="hidden" id="resign_url" value="{% url 'resign' %}" />
+        <input type="hidden" id="draw_url" value="{% url 'draw' %}" />
+        <input type="hidden" id="decline_draw_url" value="{% url 'decline_draw' %}" />
+
+    </body>
+</html>

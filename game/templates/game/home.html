@@ -1,0 +1,42 @@
+{% extends 'game/base.html' %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+	<div class="game-options">
+
+    {% if user.is_authenticated %}
+
+
+        <a href="{% url 'current_game_page' %}" class="btn btn-default" id="current_game_btn" style="display:none">Current game</a>
+    	<p id="wait_message" style="display:none">Searching for opponent...</p> 
+    	<a href="{% url 'start_game' %}" class="btn btn-default" id="start_game_btn" style="display:none">Start a new game</a>
+
+    	{% if user.player.in_game %}
+    		<script>
+    			$("#current_game_btn").toggle();
+    		</script>
+    	{% endif %}
+
+    	{% if user.player.currently_waiting %}
+    		<script>
+    			$("#wait_message").toggle();
+    		</script>
+    	{% else %}
+    		<script>
+    			$("#start_game_btn").toggle();
+    		</script>
+    	{% endif %}
+
+
+
+
+    {% else %}
+            <p><a href="{% url 'login' %}">Sign in</a> in order to play.</p>
+    {% endif %}
+
+    </div>
+    <script type="text/javascript" src="{% static 'js/update_waiting_message.js' %}"></script>
+
+{% endblock %}

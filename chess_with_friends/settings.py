@@ -21,11 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-#Note: I stored my secret key in an environment variable. In order to set up
-#the app on your own machine, generate your own 50-character secret key and assign SECRET_KEY
-#to it.
-
-SECRET_KEY = os.getenv('CHESS_WITH_FRIENDS_SECRET_KEY')
+SECRET_KEY = "wyu00=9!bx2&ly_cd!*osc*e0b^-f$9oguch4_le)$(me@p90@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

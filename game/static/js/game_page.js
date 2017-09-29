@@ -122,6 +122,7 @@ $(document).ready(function() {
 
   var intervalID;
 
+  
   var get_current_game_info = function() {
     $.ajax({
 
